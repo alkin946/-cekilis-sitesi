@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Çekiliş Dünyası</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #111827;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      color: #d1d5db;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .points {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .points h2 {
+      margin-bottom: 10px;
+    }
+
+    #puan {
+      font-size: 35px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    #timer {
+      font-size: 22px;
+      color: #e11d48;
+      margin-bottom: 15px;
+    }
+
+    button {
+      border: none;
+      background: #2563eb;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1d4ed8;
+    }
+
+    .section {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .section h2 {
+      margin-bottom: 15px;
+    }
+
+    .sponsor {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .sponsor a {
+      display: inline-block;
+      margin-top: 8px;
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .giveaway {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .giveaway h3 {
+      margin-bottom: 7px;
+    }
+
+    .giveaway button {
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎁 Çekiliş Dünyası</h1>
+  <p>Puanlarını kazan, çekilişlere katıl!</p>
+</header>
+
+<div class="container">
+
+  <div class="points">
+    <h2>⭐ Puanlarım</h2>
+
+    <div id="puan">0</div>
+
+    <div id="timer">05:00</div>
+
+    <p>5 dakika tamamlandığında 30.000 puan kazanacaksın.</p>
+
+    <br>
+
+    <button onclick="puanTopla()">30.000 Puanımı Al</button>
+  </div>
+
+  <div class="section">
+    <h2>🤝 Sponsorlarımız</h2>
+
+    <div class="sponsor">
+      <h3>Sponsor Firma 1</h3>
+      <p>Buraya sponsor firma açıklaması gelecek.</p>
+      <a href="#" target="_blank">Firmaya Git →</a>
+    </div>
+
+    <div class="sponsor">
+      <h3>Sponsor Firma 2</h3>
+      <p>Buraya sponsor firma açıklaması gelecek.</p>
+      <a href="#" target="_blank">Firmaya Git →</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🎟️ Aktif Çekilişler</h2>
+
+    <div class="giveaway">
+      <h3>🎁 1.000 TL Ödül</h3>
+      <p>Katılım: 10.000 puan</p>
+      <button>Çekilişe Katıl</button>
+    </div>
+
+    <div class="giveaway">
+      <h3>📱 Yeni Telefon Çekilişi</h3>
+      <p>Katılım: 30.000 puan</p>
+      <button>Çekilişe Katıl</button>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 Çekiliş Dünyası
+</footer>
+
+<script>
+
+let puan = 0;
+let sure = 300;
+
+function puanTopla() {
+
+  if (sure > 0) {
+    alert("Önce 5 dakikalık süreyi tamamlamalısın.");
+    return;
+  }
+
+  puan += 30000;
+
+  document.getElementById("puan").innerText =
+    puan.toLocaleString("tr-TR");
+
+  alert("Tebrikler! 30.000 puan kazandın.");
+}
+
+function sayac() {
+
+  if (sure <= 0) {
+    document.getElementById("timer").innerText =
+      "Süre tamamlandı!";
+    return;
+  }
+
+  let dakika = Math.floor(sure / 60);
+  let saniye = sure % 60;
+
+  document.getElementById("timer").innerText =
+    String(dakika).padStart(2, "0") + ":" +
+    String(saniye).padStart(2, "0");
+
+  sure--;
+}
+
+setInterval(sayac, 1000);
+sayac();
+
+</script>
+
+</body>
+</html>
